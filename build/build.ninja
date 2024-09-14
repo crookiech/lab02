@@ -57,6 +57,14 @@ build CMakeFiles/lab02.dir/ip_filter.cpp.obj: CXX_COMPILER__lab02_unscanned_Debu
   TARGET_COMPILE_PDB = CMakeFiles\lab02.dir\
   TARGET_PDB = lab02.pdb
 
+build CMakeFiles/lab02.dir/main.cpp.obj: CXX_COMPILER__lab02_unscanned_Debug C$:/programming/lab02/main.cpp || cmake_object_order_depends_target_lab02
+  DEP_FILE = CMakeFiles\lab02.dir\main.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles\lab02.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab02.dir
+  TARGET_COMPILE_PDB = CMakeFiles\lab02.dir\
+  TARGET_PDB = lab02.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab02
@@ -65,7 +73,7 @@ build CMakeFiles/lab02.dir/ip_filter.cpp.obj: CXX_COMPILER__lab02_unscanned_Debu
 #############################################
 # Link the executable lab02.exe
 
-build lab02.exe: CXX_EXECUTABLE_LINKER__lab02_Debug CMakeFiles/lab02.dir/ip_filter.cpp.obj
+build lab02.exe: CXX_EXECUTABLE_LINKER__lab02_Debug CMakeFiles/lab02.dir/ip_filter.cpp.obj CMakeFiles/lab02.dir/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab02.dir
