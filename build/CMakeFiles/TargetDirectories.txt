@@ -1,3 +1,9 @@
-C:/programming/lab02/build/CMakeFiles/lab02.dir
+C:/programming/lab02/build/CMakeFiles/lab02_cli.dir
+C:/programming/lab02/build/CMakeFiles/package.dir
+C:/programming/lab02/build/CMakeFiles/package_source.dir
 C:/programming/lab02/build/CMakeFiles/edit_cache.dir
 C:/programming/lab02/build/CMakeFiles/rebuild_cache.dir
+C:/programming/lab02/build/CMakeFiles/list_install_components.dir
+C:/programming/lab02/build/CMakeFiles/install.dir
+C:/programming/lab02/build/CMakeFiles/install/local.dir
+C:/programming/lab02/build/CMakeFiles/install/strip.dir
