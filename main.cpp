@@ -4,22 +4,23 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <tuple>
 
-// Структура для хранения IP-адреса
-struct IPAddress {
-    int n1, n2, n3, n4;
-};
+// Функция создания кортежа с отдельными числами ip адреса
+auto createTuple(int n1, int n2, int n3, int n4) {
+    return std::make_tuple(n1, n2, n3, n4);
+}
 
-int main() {
-    std::vector<IPAddress> ipAddresses;
-
-    // Открываем файл для чтения
-    std::ifstream file("C:/programming/lab02/ip_filter.tsv");
+// Функция считывания файла
+auto readingFile(std::string fileName) {
+    std::ifstream file(fileName);
     if (!file.is_open()) {
         std::cerr << "Ошибка открытия файла!" << std::endl;
-        return 1;
     }
+    
+    std::vector<std::tuple<int, int, int, int>> ipAddresses; // Вектор с ip адресами
 
+    // Считывание строк из файла
     std::string line;
     while (std::getline(file, line)) {
         std::istringstream iss(line);
@@ -28,62 +29,70 @@ int main() {
         std::getline(iss, text2, '\t');
         std::getline(iss, text3, '\t');
 
-        // Разделение IP-адреса на отдельные числа
+        // Разделение ip адреса на отдельные числа
         std::istringstream ipStream(text1);
-        IPAddress ip;
         std::getline(ipStream, text1, '.');
-        ip.n1 = std::stoi(text1);
+        auto n1 = std::stoi(text1);
         std::getline(ipStream, text1, '.');
-        ip.n2 = std::stoi(text1);
+        auto n2 = std::stoi(text1);
         std::getline(ipStream, text1, '.');
-        ip.n3 = std::stoi(text1);
+        auto n3 = std::stoi(text1);
         std::getline(ipStream, text1, '.');
-        ip.n4 = std::stoi(text1);
+        auto n4 = std::stoi(text1);
 
-        ipAddresses.push_back(ip);
+        auto IPAdress = createTuple(n1, n2, n3, n4); // Кортеж IPAdress с отдельными числами ip адреса
+        
+        ipAddresses.push_back(IPAdress); // Добавление кортежа в вектор с ip адресами
     }
 
     // Закрываем файл
     file.close();
 
-    // Сортировка в обратном лексикографическом порядке с помощью лямбда-функции
-    std::sort(ipAddresses.begin(), ipAddresses.end(), [&](IPAddress ip1, IPAddress ip2){
-        if (ip1.n1 != ip2.n1) {
-            return ip1.n1 > ip2.n1;
-        } else if (ip1.n2 != ip2.n2) {
-            return ip1.n2 > ip2.n2;
-        } else if (ip1.n3 != ip2.n3) {
-            return ip1.n3 > ip2.n3;
+    return ipAddresses;
+}
+
+// Функция сортировки ip адресов
+void sortIPAdresses(std::vector<std::tuple<int, int, int, int>>& ipAddresses) {
+    std::sort(ipAddresses.begin(), ipAddresses.end(), [](const auto& ip1, decltype(ip1) ip2){
+        if (std::get<0>(ip1) != std::get<0>(ip2)) {
+            return std::get<0>(ip1) > std::get<0>(ip2);
+        } else if (std::get<1>(ip1) != std::get<1>(ip2)) {
+            return std::get<1>(ip1) > std::get<1>(ip2);
+        } else if (std::get<2>(ip1) != std::get<2>(ip2)) {
+            return std::get<2>(ip1) > std::get<2>(ip2);
         } else {
-            return ip1.n4 >= ip2.n4;
+            return std::get<3>(ip1) > std::get<3>(ip2);
         }
     });
+}
+
+int main() {
+    auto ipAddresses = readingFile("C:/programming/lab02/ip_filter.tsv");
+
+    sortIPAdresses(ipAddresses);
 
     // Вывод отсортированного списка
-    std::cout << "Вывод отсортированного списка: " << std::endl;
     for (const auto& ip : ipAddresses) {
-        std::cout << ip.n1 << "." << ip.n2 << "." << ip.n3 << "." << ip.n4 << std::endl;
+        std::cout << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip) << std::endl;
     }
     // Вывод отсортированного списка адресов, первый байт которых равен 1
-    std::cout << "Вывод отсортированного списка адресов, первый байт которых равен 1: " << std::endl;
     for (const auto& ip : ipAddresses) {
-        if (ip.n1 == 1) {
-            std::cout << ip.n1 << "." << ip.n2 << "." << ip.n3 << "." << ip.n4 << std::endl;
+        if (std::get<0>(ip) == 1) {
+            std::cout << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip) << std::endl;
         }
     }
     // Вывод отсортированного списка адресов, первый байт которых равен 46, а второй – 70
-    std::cout << "Вывод отсортированного списка адресов, первый байт которых равен 46, а второй - 70: " << std::endl;
     for (const auto& ip : ipAddresses) {
-        if ((ip.n1 == 46) && (ip.n2 == 70)) {
-            std::cout << ip.n1 << "." << ip.n2 << "." << ip.n3 << "." << ip.n4 << std::endl;
+        if ((std::get<0>(ip) == 46) && (std::get<1>(ip) == 70)) {
+            std::cout << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip) << std::endl;
         }
     }
     // Вывод отсортированного списка адресов, любой байт которых равен 46
-    std::cout << "Вывод отсортированного списка адресов, любой байт которых равен 46: " << std::endl;
     for (const auto& ip : ipAddresses) {
-        if ((ip.n1 == 46) || (ip.n2 == 46) || (ip.n3 == 46) || (ip.n4 == 46)) {
-            std::cout << ip.n1 << "." << ip.n2 << "." << ip.n3 << "." << ip.n4 << std::endl;
+        if ((std::get<0>(ip) == 46) || (std::get<1>(ip) == 46) || (std::get<2>(ip) == 46) || (std::get<3>(ip) == 46)) {
+            std::cout << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip) << std::endl;
         }
     }
+
     return 0;
 }
