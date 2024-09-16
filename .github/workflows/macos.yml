@@ -13,16 +13,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-      - name: Build
-        run: |
-          mkdir build
-          cd build
-          cmake .. -Dgtests_DIR=${{ runner.workspace }}/gtests -Dgtest_DIR=${{ runner.workspace }}/gtests/googletest
-          cmake --build . --config Release
-      - name: Test
-        run: cmake --build . --config Release --target test
-      - name: Package
-        run: cmake --build . --config Release --target package
+      # - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
+      - run: cmake --build .
+      - run: cmake --build . --target package
       - name: Create Release (MacOS)
         id: create_release_macos
         uses: actions/create-release@v1
@@ -40,6 +33,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release_macos.outputs.upload_url }}
-          asset_path: ./lab02-0.0.${{ github.run_number }}-Darwin.zip
-          asset_name: lab02-0.0.${{ github.run_number }}-Darwin.zip
+          asset_path: ./helloworld-0.0.${{ github.run_number }}-Darwin.zip
+          asset_name: helloworld-0.0.${{ github.run_number }}-Darwin.zip
           asset_content_type: application/zip
