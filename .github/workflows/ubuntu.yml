@@ -32,7 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release_ubuntu.outputs.upload_url }}
-          asset_path: ./lab02-0.0.${{ github.run_number }}-Linux.deb
-          asset_name: lab02-0.0.${{ github.run_number }}-Linux.deb
+          asset_path: ./lab02-0.0.${{ github.run_number }}-Linux.deb # Проверьте имя файла
+          asset_name: lab02-0.0.${{ github.run_number }}-Linux.deb # Проверьте имя файла
           asset_content_type: application/vnd.debian.binary-package
           allowUpdates: true
