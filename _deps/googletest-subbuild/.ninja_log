@@ -1,0 +1,21 @@
+# ninja log v6
+2	42	7481968200561714	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	3d78382155f96ed0
+2	42	7481968200561714	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	3d78382155f96ed0
+43	6139	7481968261520346	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	29c8f2d183d313db
+43	6139	7481968261520346	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	29c8f2d183d313db
+6139	6243	7481968261560235	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	82a5f77df77b457d
+6139	6243	7481968261560235	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	82a5f77df77b457d
+6243	6284	7481968262976447	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	50ee1246cff0004b
+6243	6284	7481968262976447	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	50ee1246cff0004b
+6284	6326	7481968263395332	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	7922ff5aefc1031f
+6284	6326	7481968263395332	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	7922ff5aefc1031f
+6326	6368	7481968263814218	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	e364a16ed6f2d9d3
+6326	6368	7481968263814218	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	e364a16ed6f2d9d3
+6368	6411	7481968264243057	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	a8af70b5f571115f
+6368	6411	7481968264243057	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	a8af70b5f571115f
+6411	6454	7481968264671921	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	7ae9ed6fa1501ab0
+6411	6454	7481968264671921	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	7ae9ed6fa1501ab0
+6454	6510	7481968265240390	CMakeFiles/googletest-populate-complete	bb2f4c6ee3b83051
+6454	6510	7481968265240390	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	bb2f4c6ee3b83051
+6454	6510	7481968265240390	C:/programming/lab02/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	bb2f4c6ee3b83051
+6454	6510	7481968265240390	C:/programming/lab02/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	bb2f4c6ee3b83051
