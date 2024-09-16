@@ -1,4 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
 include(FetchContent)
+
 # Скачивание и установка gtest
 FetchContent_Declare(
     googletest
@@ -7,14 +9,19 @@ FetchContent_Declare(
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
 # Определение источников для тестирования
 set(COMMON_SRCS
-    "../main.cpp"
-    "../main.h"
+    "../functions.cpp"
+    "../functions.h"
 )
+
 # Добавление исполняемого файла для тестов
-add_executable(tests tests.cpp ${COMMON_SRCS})
+add_executable(tests tests.cpp)
+
 # Включение директории с исходными файлами
 target_include_directories(tests PUBLIC ${CMAKE_SOURCE_DIR})
-# Линковка библиотеки gtest и gtest_main
+target_include_directories(tests PUBLIC ${googletest_SOURCE_DIR}/googletest/include)
+
+# Линковка библиотеки gtest
 target_link_libraries(tests PUBLIC gtest gtest_main)
