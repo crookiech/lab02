@@ -1,5 +1,4 @@
 name: 'C++ CI'
-
 on:
   push:
     branches:
