@@ -1,3 +1,14 @@
 # ninja log v6
-641	740	7480864401331774	lab02.exe	57e42165d2523570
-28	640	7480864395212413	CMakeFiles/lab02.dir/main.cpp.obj	a45648897f824d86
+7472	7544	7480890163935404	lib/libgmock_maind.a	8b335d0057ee3dff
+7376	7456	7480890162976732	lib/libgtest_maind.a	d7737988bd18e81
+7369	7472	7480890162916585	lib/libgmockd.a	651995bad39b173
+5	7206	7480890089267596	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	d00f476f4e1ba267
+9	3098	7480890089307488	_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj	ed1aefd2d13a9258
+66	171	7480891108176682	gtests/tests.exe	1ba628e7c065f747
+7208	7369	7480890161294235	lib/libgtestd.a	ca9a8d34e28e2f78
+29	1817	7480890089506964	_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj	4fba9e9e58680252
+7	66	7480891107575466	gtests/CMakeFiles/tests.dir/tests.cpp.obj	5f9fe2c35a8f9b68
+13	1513	7480890089347641	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	8dd3056fbc59fe9d
+24	1028	7480890089467066	gtests/CMakeFiles/tests.dir/__/main.cpp.obj	981a318c0d2a4080
+938	1098	7480890098602638	lab02.exe	57e42165d2523570
+16	935	7480890089377304	CMakeFiles/lab02.dir/main.cpp.obj	ba6ec9e0cf068e40

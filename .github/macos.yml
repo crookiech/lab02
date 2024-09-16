@@ -13,11 +13,16 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-      - run: brew install boost
-      - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
-      - run: cmake --build .
-      - run: cmake --build . --target test
-      - run: cmake --build . --target package
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake .. -Dgtests_DIR=${{ runner.workspace }}/gtests -Dgtest_DIR=${{ runner.workspace }}/gtests/googletest
+          cmake --build . --config Release
+      - name: Test
+        run: cmake --build . --config Release --target test
+      - name: Package
+        run: cmake --build . --config Release --target package
       - name: Create Release (MacOS)
         id: create_release_macos
         uses: actions/create-release@v1
@@ -35,6 +40,48 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release_macos.outputs.upload_url }}
-          asset_path: ./helloworld-0.0.${{ github.run_number }}-Darwin.zip
-          asset_name: helloworld-0.0.${{ github.run_number }}-Darwin.zip
+          asset_path: ./lab02-0.0.${{ github.run_number }}-Darwin.zip
+          asset_name: lab02-0.0.${{ github.run_number }}-Darwin.zip
           asset_content_type: application/zip
+
+
+# name: 'C++ CI'
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - feature/github_actions
+# jobs:
+#   build_macos:
+#     runs-on: macos-latest
+#     permissions: write-all
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           submodules: true
+#       - run: brew install boost
+#       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
+#       - run: cmake --build .
+#       - run: cmake --build . --target test
+#       - run: cmake --build . --target package
+#       - name: Create Release (MacOS)
+#         id: create_release_macos
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: ${{ github.run_number }}
+#           release_name: Release ${{ github.run_number }} (MacOS)
+#           draft: false
+#           prerelease: false
+#       - name: Upload Release Asset (MacOS)
+#         id: upload-release-asset-macos
+#         uses: actions/upload-release-asset@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           upload_url: ${{ steps.create_release_macos.outputs.upload_url }}
+#           asset_path: ./helloworld-0.0.${{ github.run_number }}-Darwin.zip
+#           asset_name: helloworld-0.0.${{ github.run_number }}-Darwin.zip
+#           asset_content_type: application/zip
