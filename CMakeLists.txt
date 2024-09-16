@@ -1,6 +1,7 @@
 # Настройка проекта
 cmake_minimum_required(VERSION 3.10)
 project(lab02)
+set(CMAKE_CXX_STANDARD 11)  # Добавление этой строки
 
 # Добавление папки с тестами
 add_subdirectory(gtests)

@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_lab02: phony || .
 
 build CMakeFiles/lab02.dir/main.cpp.obj: CXX_COMPILER__lab02_unscanned_Debug C$:/programming/lab02/main.cpp || cmake_object_order_depends_target_lab02
   DEP_FILE = CMakeFiles\lab02.dir\main.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -g -std=gnu++11
   INCLUDES = -IC:/programming/lab02
   OBJECT_DIR = CMakeFiles\lab02.dir
   OBJECT_FILE_DIR = CMakeFiles\lab02.dir
@@ -155,14 +155,14 @@ build cmake_object_order_depends_target_tests: phony || cmake_object_order_depen
 
 build gtests/CMakeFiles/tests.dir/tests.cpp.obj: CXX_COMPILER__tests_unscanned_Debug C$:/programming/lab02/gtests/tests.cpp || cmake_object_order_depends_target_tests
   DEP_FILE = gtests\CMakeFiles\tests.dir\tests.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -g -std=gnu++11
   INCLUDES = -IC:/programming/lab02 -isystem C:/programming/lab02/build/_deps/googletest-src/googletest/include -isystem C:/programming/lab02/build/_deps/googletest-src/googletest
   OBJECT_DIR = gtests\CMakeFiles\tests.dir
   OBJECT_FILE_DIR = gtests\CMakeFiles\tests.dir
 
 build gtests/CMakeFiles/tests.dir/__/main.cpp.obj: CXX_COMPILER__tests_unscanned_Debug C$:/programming/lab02/main.cpp || cmake_object_order_depends_target_tests
   DEP_FILE = gtests\CMakeFiles\tests.dir\__\main.cpp.obj.d
-  FLAGS = -g
+  FLAGS = -g -std=gnu++11
   INCLUDES = -IC:/programming/lab02 -isystem C:/programming/lab02/build/_deps/googletest-src/googletest/include -isystem C:/programming/lab02/build/_deps/googletest-src/googletest
   OBJECT_DIR = gtests\CMakeFiles\tests.dir
   OBJECT_FILE_DIR = gtests\CMakeFiles\tests.dir\__
@@ -336,7 +336,7 @@ build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depen
 
 build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_Debug C$:/programming/lab02/build/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
   DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj.d
-  FLAGS = -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -std=c++11 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -IC:/programming/lab02/build/_deps/googletest-src/googlemock/include -IC:/programming/lab02/build/_deps/googletest-src/googlemock -isystem C:/programming/lab02/build/_deps/googletest-src/googletest/include -isystem C:/programming/lab02/build/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src
@@ -368,7 +368,7 @@ build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_
 
 build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_Debug C$:/programming/lab02/build/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
   DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj.d
-  FLAGS = -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -std=c++11 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -isystem C:/programming/lab02/build/_deps/googletest-src/googlemock/include -isystem C:/programming/lab02/build/_deps/googletest-src/googlemock -isystem C:/programming/lab02/build/_deps/googletest-src/googletest/include -isystem C:/programming/lab02/build/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src
@@ -470,7 +470,7 @@ build cmake_object_order_depends_target_gtest: phony || .
 
 build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_Debug C$:/programming/lab02/build/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
   DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj.d
-  FLAGS = -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -std=c++11 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -IC:/programming/lab02/build/_deps/googletest-src/googletest/include -IC:/programming/lab02/build/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src
@@ -502,7 +502,7 @@ build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_
 
 build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_Debug C$:/programming/lab02/build/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
   DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d
-  FLAGS = -g -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -std=c++11 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -isystem C:/programming/lab02/build/_deps/googletest-src/googletest/include -isystem C:/programming/lab02/build/_deps/googletest-src/googletest
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src
