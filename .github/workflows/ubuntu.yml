@@ -34,6 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release_ubuntu.outputs.upload_url }}
-          asset_path: ./lab02_ubuntu-0.0.${{ github.run_number }}-Linux.zip
-          asset_name: lab02_ubuntu-0.0.${{ github.run_number }}-Linux.zip
+          asset_path: ./lab02-0.0.${{ github.run_number }}-Linux.zip
+          asset_name: lab02-0.0.${{ github.run_number }}-Linux.zip
           asset_content_type: application/zip
