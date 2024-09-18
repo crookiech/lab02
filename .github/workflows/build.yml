@@ -1,4 +1,4 @@
-name: Node CI
+name: C++ CI
 
 on:
   push:
@@ -11,19 +11,32 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        node-version: [14.x]
+        # Убираем node-version, так как нам не нужен Node.js
+        # node-version: [14.x]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm ci
+    - name: Set up environment
+      # Выберите соответствующий инструмент для сборки C++ 
+      # для каждой платформы
+      if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y g++ make
+      if: matrix.os == 'macOS-latest'
+        run: brew install gcc
+      if: matrix.os == 'windows-latest'
+        run: choco install mingw
     - name: Build
-      run: npm run build
+      # Используйте соответствующие команды сборки C++ для вашего проекта
+      # Например, для CMake:
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
     - name: Test
-      run: npm test
+      # Запустите тесты C++ 
+      run: |
+        # Используйте gtest или другой тестовый фреймворк
+        make test 
     - name: Zip artifact
       run: |
         zip -r ${{ matrix.os }} out
