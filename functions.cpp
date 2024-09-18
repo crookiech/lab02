@@ -7,7 +7,7 @@
 #include <tuple>
 
 // Функция создания кортежа с отдельными числами ip адреса
-auto createTuple(int n1, int n2, int n3, int n4) {
+std::tuple<int, int, int, int> createTuple(int n1, int n2, int n3, int n4) {
     return std::make_tuple(n1, n2, n3, n4);
 }
 
