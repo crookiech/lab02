@@ -18,7 +18,7 @@ jobs:
       - run: cmake --build . --target test
       - run: cmake --build . --target package
       - name: Create Release (macos)
-        id: create_release
+        id: create_release_macos
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ steps.create_release_macos.outputs.upload_url }}
           asset_path: ./lab02-0.0.${{ github.run_number }}-Darwin.zip
           asset_name: lab02-0.0.${{ github.run_number }}-Darwin.zip
           asset_content_type: application/zip
