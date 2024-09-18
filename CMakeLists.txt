@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.6.0)
 project(lab02)
+include_directories(C:/programming/lab02/googletest/googletest/include)
+link_directories(C:/programming/lab02/googletest/googletest/build/lib)
+
+# target_link_libraries(gtest gtest_main)
 
 # Указываем стандарт C++
 set(CMAKE_CXX_STANDARD 17)

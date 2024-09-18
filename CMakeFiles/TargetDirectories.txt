@@ -1,0 +1,6 @@
+C:/programming/lab02/CMakeFiles/lab02.dir
+C:/programming/lab02/CMakeFiles/lab02_cli.dir
+C:/programming/lab02/CMakeFiles/lab02_tests.dir
+C:/programming/lab02/CMakeFiles/test.dir
+C:/programming/lab02/CMakeFiles/edit_cache.dir
+C:/programming/lab02/CMakeFiles/rebuild_cache.dir

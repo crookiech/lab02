@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc liblab02.a CMakeFiles/lab02.dir/functions.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe liblab02.a
