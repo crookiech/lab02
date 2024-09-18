@@ -6,59 +6,7 @@ on:
       - main
 
 jobs:
-  upload-release:
-
-    runs-on: ubuntu-latest
-    needs: [build-macos, build-linux, build-windows]
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: create release
-      id: create_release
-      uses: actions/create-release@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false   
-    - name: download artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: uploads    
-    - name: upload macos
-      id: upload-macos 
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/uploads/macos.zip
-        asset_name: macos.zip
-        asset_content_type: application/zip  
-    - name: upload linux
-      id: upload-linux
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/uploads/linux.zip
-        asset_name: linux.zip
-        asset_content_type: application/zip   
-    - name: upload windows
-      id: upload-windows
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/uploads/windows.zip
-        asset_name: windows.zip
-        asset_content_type: application/zip                        
-
-  build-test:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -70,97 +18,75 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install gtest
-      run: npm install -g gtest
-    - name: Build with gtest
-      run: cmake -G "Unix Makefiles" . -Dgtest_DIR=$(npm bin)/gtest  && make test 
-
-  build-macos:
-
-    runs-on: macOS-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: Install dependencies
+      run: npm ci
+    - name: Build
+      run: npm run build
+    - name: Test
+      run: npm test
+    - name: Zip artifact
       run: |
-        npm ci
-        npm test
-    - name: npm run build
-      run: |
-        npm run build
-    - name: zip macos artifact
-      run: |
-        zip -r macos out 
-    - name: upload macos artifact
+        zip -r ${{ matrix.os }} out
+    - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
-        name: uploads
-        path: macos.zip                    
+        name: ${{ matrix.os }}
+        path: ${{ matrix.os }}.zip
 
-  build-linux:
-
+  release:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
+    needs: [build]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
-      run: |
-        npm ci
-        npm test
-    - name: npm run build
-      run: |
-        npm run build
-    - name: zip linux artifact
-      run: |
-        zip -r linux out  
-    - name: upload linux artifact
-      uses: actions/upload-artifact@v1
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Download artifacts
+      uses: actions/download-artifact@v1
       with:
-        name: uploads
-        path: linux.zip        
-
-  build-windows:
-
-    runs-on: windows-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+        name: ubuntu
+        path: ubuntu.zip
+    - name: Download artifacts
+      uses: actions/download-artifact@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
-      run: |
-        npm ci
-        npm test
-    - name: npm run build
-      run: |
-        npm run build
-    - name: zip win artifact
-      run: |
-        powershell Compress-Archive out windows.zip 
-    - name: upload windows artifact
-      uses: actions/upload-artifact@v1
+        name: macos
+        path: macos.zip
+    - name: Download artifacts
+      uses: actions/download-artifact@v1
       with:
-        name: uploads
+        name: windows
         path: windows.zip
+    - name: Upload artifacts
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ubuntu.zip
+        asset_name: ubuntu.zip
+        asset_content_type: application/zip
+    - name: Upload artifacts
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: macos.zip
+        asset_name: macos.zip
+        asset_content_type: application/zip
+    - name: Upload artifacts
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: windows.zip
+        asset_name: windows.zip
+        asset_content_type: application/zip
