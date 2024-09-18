@@ -11,13 +11,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        # Убираем node-version, так как нам не нужен Node.js
-        # node-version: [14.x]
     steps:
     - uses: actions/checkout@v1
     - name: Set up environment
-      # Выберите соответствующий инструмент для сборки C++ 
-      # для каждой платформы
       if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get update && sudo apt-get install -y g++ make
       if: matrix.os == 'macOS-latest'
@@ -25,19 +21,16 @@ jobs:
       if: matrix.os == 'windows-latest'
         run: choco install mingw
     - name: Build
-      # Используйте соответствующие команды сборки C++ для вашего проекта
-      # Например, для CMake:
       run: |
         mkdir build
         cd build
         cmake ..
         make
     - name: Test
-      # Запустите тесты C++ 
       run: |
-        # Используйте gtest или другой тестовый фреймворк
-        make test 
+        make test
     - name: Zip artifact
+      # Используем zip -r вместо cmake
       run: |
         zip -r ${{ matrix.os }} out
     - name: Upload artifact
