@@ -16,7 +16,7 @@ TEST(IPAddressTest, ReadingFileTest) {
     {172, 16, 0, 1},
     {192, 168, 0, 1},
   };
-  auto ipAddresses = readingFile("C:/programming/lab02/test.tsv");
+  auto ipAddresses = readingFile("../test.tsv");
   ASSERT_EQ(ipAddresses, expectedIPAddresses);
 }
 
