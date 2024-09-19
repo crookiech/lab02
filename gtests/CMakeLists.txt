@@ -17,3 +17,6 @@ set(COMMON_SRCS
 add_executable(tests tests.cpp ${COMMON_SRCS})
 target_include_directories(tests PUBLIC ${CMAKE_SOURCE_DIR})
 target_link_libraries(tests PUBLIC gtest gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(tests)
