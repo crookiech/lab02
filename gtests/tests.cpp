@@ -2,7 +2,7 @@
 #include "functions.h" 
 
 TEST(IPAddressTest, CreateTupleTest) {
-  auto ipTuple = createTuple(192, 168, 1, 1);
+  auto ipTuple = createTuple(192.2, 168, 1.000, 1);
   ASSERT_EQ(std::get<0>(ipTuple), 192);
   ASSERT_EQ(std::get<1>(ipTuple), 168);
   ASSERT_EQ(std::get<2>(ipTuple), 1);
@@ -16,7 +16,8 @@ TEST(IPAddressTest, ReadingFileTest) {
     {172, 16, 0, 1},
     {192, 168, 0, 1},
   };
-  auto ipAddresses = readingFile("../test.tsv");
+  auto ipAddresses = readingFile("C:/programming/lab02/test.tsv");
+  // auto ipAddresses = readingFile("../test.tsv");
   ASSERT_EQ(ipAddresses, expectedIPAddresses);
 }
 
