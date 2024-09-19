@@ -14,11 +14,13 @@ jobs:
           submodules: true
 
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
-      
+
       - run: cmake --build .
 
       # Добавляем шаг для запуска тестов
-      - run: ctest --output-on-failure
+      - name: Run Tests
+        run: |
+          ctest --output-on-failure || exit 1  # Проверяем наличие тестов и их успешное выполнение
 
       - run: cmake --build . --target package
 
@@ -57,7 +59,9 @@ jobs:
       - run: cmake --build .
 
       # Добавляем шаг для запуска тестов
-      - run: ctest --output-on-failure
+      - name: Run Tests
+        run: |
+          ctest --output-on-failure || exit 1  # Проверяем наличие тестов и их успешное выполнение
 
       - run: cmake --build . --target package
 
