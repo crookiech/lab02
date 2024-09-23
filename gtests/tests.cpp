@@ -16,8 +16,8 @@ TEST(IPAddressTest, ReadingFileTest) {
     {172, 16, 0, 1},
     {192, 168, 0, 1},
   };
-  // auto ipAddresses = readingFile("C:/programming/lab02/test.tsv"); // Для локального тестирования
-  auto ipAddresses = readingFile("../test.tsv"); // Для тестирования в github actions
+  auto ipAddresses = readingFile("C:/programming/lab02/test.tsv"); // Для локального тестирования
+  // auto ipAddresses = readingFile("../test.tsv"); // Для тестирования в github actions
   ASSERT_EQ(ipAddresses, expectedIPAddresses);
 }
 

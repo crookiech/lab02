@@ -15,11 +15,9 @@ std::tuple<int, int, int, int> createTuple(int n1, int n2, int n3, int n4) {
 std::vector<std::tuple<int, int, int, int>> readingFile(std::string fileName) {
     std::ifstream file(fileName);
     if (!file.is_open()) {
-        std::cerr << "Ошибка открытия файла!" << std::endl;
+        std::cout << "Ошибка открытия файла: " <<fileName<< std::endl;
     }
-    
     std::vector<std::tuple<int, int, int, int>> ipAddresses; // Вектор с ip адресами
-
     // Считывание строк из файла
     std::string line;
     while (std::getline(file, line)) {
@@ -28,7 +26,6 @@ std::vector<std::tuple<int, int, int, int>> readingFile(std::string fileName) {
         std::getline(iss, text1, '\t');
         std::getline(iss, text2, '\t');
         std::getline(iss, text3, '\t');
-
         // Разделение ip адреса на отдельные числа
         std::istringstream ipStream(text1);
         std::getline(ipStream, text1, '.');
@@ -39,15 +36,11 @@ std::vector<std::tuple<int, int, int, int>> readingFile(std::string fileName) {
         auto n3 = std::stoi(text1);
         std::getline(ipStream, text1, '.');
         auto n4 = std::stoi(text1);
-
         auto IPAdress = createTuple(n1, n2, n3, n4); // Кортеж IPAdress с отдельными числами ip адреса
-        
         ipAddresses.push_back(IPAdress); // Добавление кортежа в вектор с ip адресами
     }
-
     // Закрываем файл
     file.close();
-
     return ipAddresses;
 }
 

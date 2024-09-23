@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.6.0)
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 set(PROJECT_VESRION 0.0.${PATCH_VERSION})
+add_executable(lab02 main.cpp functions.cpp functions.h)
 project(lab02 VERSION ${PROJECT_VESRION})
 set(CMAKE_CXX_STANDARD 17)
 set(CXX_STANDARD_REQUIRED ON)

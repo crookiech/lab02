@@ -1,20 +1,17 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <string>
-#include <sstream>
-#include <algorithm>
 #include <tuple>
 #include "functions.h"
 
 int main() {
     std::vector<std::tuple<int, int, int, int>> ipAddresses = readingFile("C:/programming/lab02/ip_filter.tsv");
-
     sortIPAdresses(ipAddresses);
-
     // Вывод отсортированного списка
     for (const auto& ip : ipAddresses) {
-        std::cout << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip) << std::endl;
+        std::cout << std::get<0>(ip) << "." 
+        << std::get<1>(ip) << "." 
+        << std::get<2>(ip) << "." 
+        << std::get<3>(ip) << std::endl;
     }
     // Вывод отсортированного списка адресов, первый байт которых равен 1
     for (const auto& ip : ipAddresses) {
@@ -34,6 +31,5 @@ int main() {
             std::cout << std::get<0>(ip) << "." << std::get<1>(ip) << "." << std::get<2>(ip) << "." << std::get<3>(ip) << std::endl;
         }
     }
-
     return 0;
 }
